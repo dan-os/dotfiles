@@ -1,0 +1,7 @@
+[user]
+        name = dan-os
+        email = 48282179+dan-os@users.noreply.github.com
+[core]
+        editor = nano
+[init]
+        defaultBranch = main

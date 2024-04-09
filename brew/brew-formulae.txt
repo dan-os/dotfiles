@@ -1,0 +1,8 @@
+gnupg
+coreutils
+curl
+git
+step
+kubernetes-cli
+kubectx
+kind

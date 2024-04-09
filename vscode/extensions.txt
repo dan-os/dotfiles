@@ -1,0 +1,8 @@
+adpyke.codesnap
+dbaeumer.vscode-eslint
+fosshaas.fontsize-shortcuts
+bierner.markdown-mermaid
+esbenp.prettier-vscode
+yoavbls.pretty-ts-errors
+rangav.vscode-thunder-client
+vscode-icons-team.vscode-icons

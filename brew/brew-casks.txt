@@ -1,0 +1,7 @@
+iterm2
+warp
+raycast
+rectangle
+alt-tab
+keycastr
+stats
