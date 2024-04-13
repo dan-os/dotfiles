@@ -5,3 +5,4 @@ rectangle
 alt-tab
 keycastr
 stats
+hiddenbar
