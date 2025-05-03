@@ -1,0 +1,6 @@
+{
+  "darwin": {
+    // Install homebrew
+    "homebrew": true
+  }
+}

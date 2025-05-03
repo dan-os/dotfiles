@@ -1,0 +1,19 @@
+# casks
+iterm2
+warp
+raycast
+rectangle
+alt-tab
+keycastr
+stats
+hiddenbar
+
+# formulae
+gnupg
+coreutils
+curl
+git
+step
+kubernetes-cli
+kubectx
+kind

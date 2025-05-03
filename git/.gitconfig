@@ -1,0 +1,25 @@
+[commit]
+	gpgsign = true
+
+[core]
+	editor = nano
+
+[credential]
+	helper = osxkeychain
+
+[include]
+    path = ~/.gitconfig.local
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[user]
+    name = dan-os
+    email = 48282179+dan-os@users.noreply.github.com
+
+# always use ssh
+[url "git@github.com:"]
+	insteadOf = https://github.com/
