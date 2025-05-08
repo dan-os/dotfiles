@@ -5,6 +5,11 @@ source $ROOT_DIR/lib/common.sh
 
 printenv
 
+# get sudo
+if sudo -v; then
+  trap 'sudo -k' EXIT
+fi
+
 ohai "Bootstrapping..."
 (
   echo "doing something..."
