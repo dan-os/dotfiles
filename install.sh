@@ -7,11 +7,9 @@ source $ROOT_DIR/lib/common.sh
 
 printenv
 
-ohai "Acquiring sudo..."
-(
-  execute "sudo" "-v"
-  trap 'sudo -k' EXIT
-) || exit 1
+# acquire sudo
+execute "sudo" "-v"
+trap 'sudo -k' EXIT
 
 ohai "Installing devbox..."
 (
