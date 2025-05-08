@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#
 # start.sh
 #
 # This script can be used to install everything from the git repository using one command.
@@ -8,7 +8,7 @@
 # Usage: 
 # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/dan-os/dotfiles/HEAD/start.sh)"
 
-set -u
+set -euo pipefail
 
 abort() {
   printf "%s\n" "$@" >&2
@@ -32,14 +32,13 @@ tty_bold="$(tty_mkbold 39)"
 tty_reset="$(tty_escape 0)"
 
 shell_join() {
-  local arg
-  printf "%s" "$1"
-  shift
-  for arg in "$@"
-  do
-    printf " "
-    printf "%s" "${arg// /\ }"
-  done
+  if [[ $# -gt 0 ]]; then
+    printf "%s" "$1"
+    shift
+    for arg in "$@"; do 
+      printf " %s" "${arg// /\ }";
+    done
+  fi
 }
 
 chomp() {
@@ -55,25 +54,18 @@ warn() {
 }
 
 execute() {
-  if ! "$@"
-  then
-    abort "$(printf "Failed during: %s" "$(shell_join "$@")")"
-  fi
+  "$@" || abort "$(printf "Failed during: %s" "$(shell_join "$@")")"
 }
 
 retry() {
   local tries="$1" n="$1" pause=2
   shift
-  if ! "$@"
-  then
-    while [[ $((--n)) -gt 0 ]]
-    do
+  if ! "$@"; then
+    while [[ $((--n)) -gt 0 ]]; do
       warn "$(printf "Trying again in %d seconds: %s" "${pause}" "$(shell_join "$@")")"
-      sleep "${pause}"
-      ((pause *= 2))
-      if "$@"
-      then
-        return
+      sleep "${pause}" && ((pause *= 2))
+      if "$@"; then 
+        return 0; 
       fi
     done
     abort "$(printf "Failed %d times doing: %s" "${tries}" "$(shell_join "$@")")"
@@ -86,10 +78,13 @@ wait_for_user() {
   echo "Press ${tty_bold}RETURN${tty_reset}/${tty_bold}ENTER${tty_reset} to continue or any other key to abort:"
   getc c
   # we test for \r and \n because some stuff does \r instead
-  if ! [[ "${c}" == $'\r' || "${c}" == $'\n' ]]
-  then
+  if ! [[ "${c}" == $'\r' || "${c}" == $'\n' ]]; then
     exit 1
   fi
+}
+
+has() {
+	command -v "$1" 1>/dev/null 2>&1
 }
 
 cd $HOME || exit 1
@@ -108,6 +103,10 @@ warn "It ${tty_bold}will overwrite${tty_reset} any existing dotfiles and the cur
 wait_for_user
 echo
 
+if ! has "git"; then
+  abort "git is not installed."
+fi
+
 ohai "Downloading latest dotfiles..."
 (
     mkdir -p "${DOTFILES_DIR}" || return
@@ -119,12 +118,12 @@ ohai "Downloading latest dotfiles..."
     execute "git" "config" "--bool" "core.autocrlf" "false"
     execute "git" "config" "--bool" "core.symlinks" "true"
 
-    retry 5 "git" "fetch" "--quiet" "--progress" "--force" "origin"
-    retry 5 "git" "fetch" "--quiet" "--progress" "--force" "--tags" "origin"
+    retry 3 "git" "fetch" "--quiet" "--progress" "--force" "origin"
+    retry 3 "git" "fetch" "--quiet" "--progress" "--force" "--tags" "origin"
     execute "git" "remote" "set-head" "origin" "--auto" >/dev/null
 
     LATEST_GIT_TAG="$(git tag --list --sort="-version:refname" | head -n1)"
-    if [[ -z "${LATEST_GIT_TAG}" ]] then
+    if [[ -z "${LATEST_GIT_TAG}" ]]; then
       LATEST_GIT_TAG="origin/main"
     fi
 
