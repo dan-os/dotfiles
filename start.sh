@@ -132,7 +132,7 @@ ohai "Downloading latest dotfiles..."
 
 cd "${DOTFILES_DIR}" || exit 1
 
-ohai "Installing dotfiles..."
+ohai "Starting dotfiles installer..."
 (
   execute "bash" "${DOTFILES_DIR}/install.sh"
 ) || exit 1

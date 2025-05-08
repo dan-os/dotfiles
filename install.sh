@@ -1,27 +1,26 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 export ROOT_DIR="$(git rev-parse --show-toplevel)"
 source $ROOT_DIR/lib/common.sh
 
 printenv
 
 # get sudo
-ohai "sudo is required..."
+ohai "Acquiring sudo..."
 (
-  if execute "sudo" "-v"; then
+  if sudo -v; then
     trap 'sudo -k' EXIT
+  else
+    abort "sudo is required."
   fi
 )
-
-ohai "Bootstrapping..."
-(
-  echo "doing something..."
-) || exit 1
 
 ohai "Installing devbox..."
 (
   curl -fsSL https://get.jetify.com/devbox | bash
-)
+) || exit 1
 
 # install devbox
 # devbox
