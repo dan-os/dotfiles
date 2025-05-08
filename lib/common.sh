@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+abort() {
+  printf "%s\n" "$@" >&2
+  exit 1
+}
+
 tty_escape() { printf "\033[%sm" "$1"; }
 tty_mkbold() { tty_escape "1;$1"; }
 tty_underline="$(tty_escape "4;39")"
