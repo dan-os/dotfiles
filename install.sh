@@ -6,9 +6,12 @@ source $ROOT_DIR/lib/common.sh
 printenv
 
 # get sudo
-if sudo -v; then
-  trap 'sudo -k' EXIT
-fi
+ohai "sudo is required..."
+(
+  if sudo -v; then
+    trap 'sudo -k' EXIT
+  fi
+) || exit 1
 
 ohai "Bootstrapping..."
 (
