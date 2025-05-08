@@ -84,14 +84,14 @@ wait_for_user() {
 }
 
 has() {
-	command -v "$1" 1>/dev/null 2>&1
+  command -v "$1" 1>/dev/null 2>&1
 }
 
 cd $HOME || exit 1
 
 ################################################################
 
-DOTFILES_DIR="$HOME/.dotfiles"
+export DOTFILES_DIR="$HOME/.dotfiles"
 DOTFILES_GIT_REMOTE="https://github.com/dan-os/dotfiles"
 
 ################################################################
