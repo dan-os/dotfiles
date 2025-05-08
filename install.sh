@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# helpers
-. ./lib/common.sh
+export ROOT_DIR="$(git rev-parse --show-toplevel)"
+source $ROOT_DIR/lib/common.sh
 
 printenv
 

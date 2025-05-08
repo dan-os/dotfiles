@@ -87,7 +87,7 @@ has() {
   command -v "$1" 1>/dev/null 2>&1
 }
 
-cd $HOME || exit 1
+cd "${HOME}" || exit 1
 
 ################################################################
 
@@ -129,6 +129,8 @@ ohai "Downloading latest dotfiles..."
 
     execute "git" "checkout" "--quiet" "--force" "-B" "main" "${LATEST_GIT_TAG}"
 ) || exit 1
+
+cd "${DOTFILES_DIR}" || exit 1
 
 ohai "Installing dotfiles..."
 (
