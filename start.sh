@@ -135,6 +135,8 @@ ohai "Installing dotfiles..."
   execute "bash" "${DOTFILES_DIR}/install.sh"
 ) || exit 1
 
+echo
+
 if [[ ":${PATH}:" != *":${DOTFILES_DIR}/bin:"* ]]
 then
   warn "${DOTFILES_DIR}/bin is not in your PATH."

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # helpers
-source lib/common.sh
+. ./lib/common.sh
 
 printenv
 
