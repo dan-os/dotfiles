@@ -7,19 +7,17 @@ source $ROOT_DIR/lib/common.sh
 
 printenv
 
-# get sudo
 ohai "Acquiring sudo..."
 (
-  if sudo -v; then
-    trap 'sudo -k' EXIT
-  else
-    abort "sudo is required."
-  fi
-)
+  execute "sudo" "-v"
+  trap 'sudo -k' EXIT
+) || exit 1
 
 ohai "Installing devbox..."
 (
   curl -fsSL https://get.jetify.com/devbox | bash
+  DEVBOX_VERSION=$(devbox version)
+  echo "Installed devbox version: ${DEVBOX_VERSION}"
 ) || exit 1
 
 # install devbox
