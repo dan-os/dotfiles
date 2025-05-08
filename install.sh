@@ -8,10 +8,10 @@ printenv
 # get sudo
 ohai "sudo is required..."
 (
-  if sudo -v; then
+  if execute "sudo" "-v"; then
     trap 'sudo -k' EXIT
   fi
-) || exit 1
+)
 
 ohai "Bootstrapping..."
 (
