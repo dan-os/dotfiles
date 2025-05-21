@@ -3,10 +3,10 @@
 # start.sh
 #
 # This script can be used to install everything from the git repository using one command.
-# To install dotfiles from a local repository, run `install.sh`.
+# To install dotfiles from a local repository, run `install`.
 #
 # Usage: 
-# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/dan-os/dotfiles/HEAD/start.sh)"
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/dan-os/dotfiles/HEAD/start)"
 
 set -euo pipefail
 
@@ -104,7 +104,7 @@ wait_for_user
 echo
 
 if ! has "git"; then
-  abort "git is not installed."
+  abort "git is not installed!"
 fi
 
 ohai "Downloading latest dotfiles..."
@@ -134,7 +134,7 @@ cd "${DOTFILES_DIR}" || exit 1
 
 ohai "Starting dotfiles installer..."
 (
-  execute "bash" "${DOTFILES_DIR}/install.sh"
+  execute "bash" "${DOTFILES_DIR}/install"
 ) || exit 1
 
 echo

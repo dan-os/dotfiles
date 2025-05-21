@@ -1,6 +1,9 @@
 {
-  "darwin": {
-    // Install homebrew
-    "homebrew": true
+  "Darwin": {
+    // In order of execution
+    "packages": ["brew", "devbox"]
+  },
+  "Linux": {
+    "packages": ["devbox"]
   }
 }
