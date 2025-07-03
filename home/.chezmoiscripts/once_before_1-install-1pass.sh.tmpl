@@ -1,0 +1,13 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+# exit fast if already in $PATH
+type brew >/dev/null 2>&1 && exit
+
+echo "Installing 1password..."
+brew bundle --file=/dev/stdin <<EOF
+cask "1password"
+cask "1password-cli"
+EOF
+
+{{ end -}}
