@@ -1,5 +1,9 @@
 {
   "files.associations": {
-    "*.json": "jsonc"
+    "*.json": "jsonc",
+    "*.sh.tmpl": "jinja-shell",
+    "*.toml.tmpl": "jinja-toml",
+    ".chezmoiignore": "ignore",
+    "dot_gitignore": "ignore"
   }
 }

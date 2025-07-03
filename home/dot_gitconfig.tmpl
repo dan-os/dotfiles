@@ -1,0 +1,16 @@
+[user]
+    name = {{ .git_username }}
+    email = {{ .git_email }}
+    signingkey = {{ .git_signing_key }}
+
+[core]
+    editor = code --wait
+
+[init]
+    defaultBranch = main
+
+[commit]
+    gpgSign = true
+
+[url "git@github.com:"]
+    insteadOf = https://github.com/
