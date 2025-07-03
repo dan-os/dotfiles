@@ -1,0 +1,19 @@
+---
+personal:
+  packages:
+    darwin:
+      brews:
+        - "git"
+        - "jq"
+        - "mkcert"
+        - "step"
+      casks:
+        - "alt-tab"
+        - "hiddenbar"
+        - "iterm2"
+        - "keycastr"
+        - "ngrok"
+        - "raycast"
+        - "rectangle"
+        - "stats"
+        - "google-chrome"

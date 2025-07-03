@@ -2,7 +2,7 @@
 #!/bin/bash
 
 # exit fast if already in $PATH
-# type brew >/dev/null 2>&1 && exit
+type brew >/dev/null 2>&1 && exit
 export PATH="$PATH:/opt/homebrew/bin"
 
 echo "Installing 1password..."
@@ -22,7 +22,7 @@ getc() {
 wait_for_user() {
   local c
   echo
-  printf "Press \033[1mRETURN\033[0m/\033[1mENTER\033[0m once 1Password is signed in:"
+  printf "Press \033[1mRETURN\033[0m/\033[1mENTER\033[0m to confirm you have completed the above steps:"
   getc c
   # we test for \r and \n because some stuff does \r instead
   if ! [[ "${c}" == $'\r' || "${c}" == $'\n' ]]; then
@@ -32,9 +32,12 @@ wait_for_user() {
 
 # open 1password app to allow signin
 open "/Applications/1Password.app"
+echo
+echo "You must now sign in to the 1Password desktop app. Using a QR code is easiest!"
+echo "Then, under [Settings > Developer], check Integrate with 1Password CLI to continue..."
 wait_for_user
 
 # sign in op cli
-eval $(op signin --account my.1password.eu)
-
+# eval $(op signin --account my.1password.eu)
 {{ end -}}
+ 
