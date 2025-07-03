@@ -2,7 +2,7 @@
 #!/bin/bash
 
 # exit fast if already in $PATH
-type brew >/dev/null 2>&1 && exit
+# type brew >/dev/null 2>&1 && exit
 export PATH="$PATH:/opt/homebrew/bin"
 
 echo "Installing 1password..."
@@ -31,10 +31,14 @@ wait_for_user() {
 }
 
 # open 1password app to allow signin
-open "/Applications/1Password.app"
 echo
-echo "You must now sign in to the 1Password desktop app. Using a QR code is easiest!"
-echo "Then, under [Settings > Developer], check Integrate with 1Password CLI to continue..."
+echo "[Action Required] You must now sign in to the 1Password desktop app. Using a QR code is easiest!"
+open "/Applications/1Password.app"
+wait_for_user
+
+echo
+echo "[Action Required] Now, under [Settings > Developer], check 'Integrate with 1Password CLI' to continue..."
+open "onepassword://settings"
 wait_for_user
 
 # sign in op cli
