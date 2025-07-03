@@ -3,6 +3,7 @@
 
 # exit fast if already in $PATH
 type brew >/dev/null 2>&1 && exit
+export PATH="$PATH:/opt/homebrew/bin"
 
 echo "Installing 1password..."
 brew bundle --file=/dev/stdin <<EOF
