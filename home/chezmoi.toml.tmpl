@@ -17,14 +17,13 @@ prompt = false # safe
 mode = "account"
 
 # os id
-{{- $osid := .chezmoi.os -}}
+{{$osid := .chezmoi.os -}}
 {{- if hasKey .chezmoi.osRelease "id" -}}
 {{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
-{{- end -}}
+{{- end}}
 
 [data]
 osid = {{ $osid | quote }}
-
 git_username = "dan-os"
 git_email = "48282179+dan-os@users.noreply.github.com"
 git_signing_key = "TEST"
