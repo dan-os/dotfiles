@@ -1,8 +1,6 @@
 {{ if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 
-export PATH="$PATH:/opt/homebrew/bin"
-
 # exit fast if already in $PATH
 type brew >/dev/null 2>&1 && exit
 
