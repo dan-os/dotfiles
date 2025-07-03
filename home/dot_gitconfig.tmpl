@@ -3,11 +3,11 @@
     email = {{ .git_email }}
     signingkey = {{ .git_signing_key }}
 
-[core]
-    editor = code --wait
-
 [init]
     defaultBranch = main
+
+[core]
+    editor = code --wait
 
 [commit]
     gpgSign = true
