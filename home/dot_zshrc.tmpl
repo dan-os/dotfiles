@@ -11,7 +11,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 {{- $homeDir := .chezmoi.homeDir }}
 # ~ absolute paths ~
 {{- range $_, $absPath := .paths.absolute }}
-{{-   if stat $path }}
+{{-   if stat $absPath }}
 {{-     $paths = mustAppend $paths $absPath }}
 {{-   end }}
 {{- end }}
