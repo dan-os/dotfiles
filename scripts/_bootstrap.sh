@@ -17,7 +17,7 @@ CHEZMOI="$BIN_DIR/chezmoi"
 # prerequisites
 case "$(uname -s)" in
 Darwin)
-    xcode-select --install
+    xcode-select -p &>/dev/null || xcode-select --install
     ;;
 Linux)
     ;;
