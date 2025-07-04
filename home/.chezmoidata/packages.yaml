@@ -1,8 +1,12 @@
 ---
 packages:
   darwin:
-    personal: {}
-    work: {}
+    personal:
+      brews: []
+      casks: []
+    work:
+      brews: []
+      casks: []
     common:
       brews:
         - "git"
