@@ -1,0 +1,22 @@
+.oh-my-zsh/**
+
+# oh-my-zsh plugins
+# !.oh-my-zsh/plugins
+{{ range .zshPlugins }}
+# !.oh-my-zsh/plugins/{{ . }}
+# !.oh-my-zsh/plugins/{{ . }}/**
+{{- end }}
+
+# Mac OS only
+{{ if ne .chezmoi.os "darwin" }}
+.chezmoiscripts/darwin/**
+.config/homebrew
+{{ end }}
+
+# Personal
+{{ if not .personal.enabled }}
+{{ end }}
+
+# Work
+{{ if not .work.enabled }}
+{{ end }}

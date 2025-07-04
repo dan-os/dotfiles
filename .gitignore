@@ -1,5 +1,7 @@
 # System
 .DS_Store
+Thumbs.db
 
 # Other
 .archive/
+*.draft*

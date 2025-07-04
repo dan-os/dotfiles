@@ -1,6 +1,0 @@
----
-common:
-  packages:
-    darwin:
-      brews: {}
-      casks: {}

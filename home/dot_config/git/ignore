@@ -1,0 +1,19 @@
+#
+# Global .gitignore
+# Ref: https://git-scm.com/docs/gitignore
+#
+
+# System
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary
+*~
+*#
+
+# Node
+node_modules/
+
+# Environment
+.env

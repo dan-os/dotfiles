@@ -1,7 +1,9 @@
 ---
-personal:
-  packages:
-    darwin:
+packages:
+  darwin:
+    personal: {}
+    work: {}
+    common:
       brews:
         - "git"
         - "jq"

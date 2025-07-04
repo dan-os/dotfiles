@@ -4,6 +4,10 @@
     "*.sh.tmpl": "jinja-shell",
     "*.toml.tmpl": "jinja-toml",
     ".chezmoiignore": "ignore",
-    "dot_gitignore": "ignore"
+    "dot_curlrc": "jinja-shell",
+    "dot_gitconfig.tmpl": "jinja-toml",
+    "dot_gitignore": "ignore",
+    "dot_zprofile.tmpl": "jinja-shell",
+    "dot_zshrc.tmpl": "jinja-shell"
   }
 }

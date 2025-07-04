@@ -1,5 +1,13 @@
 #!/bin/sh
 
+#
+# @dan-os/dotfiles
+# easy installation script
+#
+# Run the following one-liner to configure a new machine:
+# => /bin/bash -c "$(curl -fsSL go.dan.sm/dotfiles)"
+#
+
 # exit on error
 set -e
 
@@ -13,12 +21,12 @@ if [ ! "$(command -v chezmoi)" ]; then
     elif [ "$(command -v wget)" ]; then
         sh -c "$(wget -qO- https://get.chezmoi.io)" -- -b "$BIN_DIR"
     else
-        echo "CURL or WGET must be installed first!" >&2
+        echo "[ERROR] CURL or WGET must be installed first!" >&2
         exit 1
     fi
 else
     CHEZMOI=chezmoi
 fi
 
-# apply github@dan-os/dotfiles.git
+# apply github@dan-os/dotfiles with chezmoi
 exec "$CHEZMOI" init --apply dan-os/dotfiles

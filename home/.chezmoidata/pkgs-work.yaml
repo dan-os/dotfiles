@@ -1,6 +1,0 @@
----
-work:
-  packages:
-    darwin:
-      brews: {}
-      casks: {}

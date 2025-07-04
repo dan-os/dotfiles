@@ -1,0 +1,25 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+echo "Installing common brew packages..."
+brew bundle --file=/dev/stdin <<EOF
+{{ range .common.packages.darwin.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .common.packages.darwin.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+EOF
+{{ end -}}
+
+{{ if eq .personal.enabled true -}}
+echo "Installing personal brew packages..."
+brew bundle --file=/dev/stdin <<EOF
+{{ range .personal.packages.darwin.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .personal.packages.darwin.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+EOF
+{{ end -}}

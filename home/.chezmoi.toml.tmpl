@@ -1,33 +1,50 @@
-# [git]
-#     autoCommit = true
-#     autoPush = true
+#
+# chezmoi configuration
+# => https://github.com/dan-os/dotfiles
+#
 
+# ~ feature flags ~
+# personal: true if this is a personal machine / profile
+{{- $personal := false }}
+# work: true if this is a work machine / profile
+{{- $work := false }}
+
+# ~ detect OS ID ~
+{{ $osid := .chezmoi.os -}}
+{{- if hasKey .chezmoi.osRelease "id" -}}
+{{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
+# ~ detect correct hostname on darwin ~
+{{ $hostname := .chezmoi.hostname -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $hostname := output "scutil" "--get" "LocalHostName" | trim -}}
+{{- end -}}
+
+# ~ user config ~
+{{ $name := "dan-os" -}}
+{{- $email := "48282179+dan-os@users.noreply.github.com" -}}
+
+# ~ config start ~
 progress = true
 
 [edit]
-command = "code"
-args = ["--wait"]
-
-#[diff]
-#    command = "code"
-#    args = ["--wait", "--diff"]
+    command = "code"
+    args = ["--wait"]
 
 [onepassword]
-prompt = false # safe
-mode = "account"
+    prompt = false # safe
+    mode = "account"
 
-{{$osid := .chezmoi.os -}}
-{{- if hasKey .chezmoi.osRelease "id" -}}
-{{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
-{{- end}}
-
+# ~ dynamic data ~
 [data]
-osid = {{ $osid | quote }}
-
-git_name = "dan-os"
-git_email = "48282179+dan-os@users.noreply.github.com"
-
-personal.enabled = true
+    osid = {{ $osid | quote }}
+    hostname = {{ $hostname | quote }}
+    email = {{ $email | quote }}
+    personal.enabled = {{ $personal }}
+    work.enabled = {{ $work }}
+    git_name = {{ $name | quote }}
+    git_email = {{ $email | quote }}
 
 # git_signing_key = "TEST"
 # git_signing_key = { # { (bitwardenFields "item" (bitwarden "item" "chezmoi").id).git_signing_key_id.value | quote } #}
