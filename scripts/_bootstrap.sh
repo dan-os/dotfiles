@@ -14,6 +14,19 @@ set -e
 BIN_DIR="$HOME/.local/bin"
 CHEZMOI="$BIN_DIR/chezmoi"
 
+# prerequisites
+case "$(uname -s)" in
+Darwin)
+    xcode-select --install
+    ;;
+Linux)
+    ;;
+*)
+    echo "[Warning] unknown OS"
+    exit 1
+    ;;
+esac
+
 # install chezmoi
 if [ ! "$(command -v chezmoi)" ]; then
     if [ "$(command -v curl)" ]; then
