@@ -1,16 +1,38 @@
+[![Project Banner](https://github.com/dan-os/dotfiles/blob/main/.github/banner.png?raw=true)](https://github.com/dan-os/dotfiles)
+
 # dotfiles
+
+these are my dotfiles. there are many others like them, but these ones is mine.
 
 ## Usage
 
-### Prerequisites:
+### 1. Prerequisites:
 
-- curl
-- git
+Ensure the following are available prior to starting:
+
+- `xcode tools` (macOS only)
+- `curl` or `wget`
+- `git`
+
+### 2. Bootstrap
+
+Execute the following to bootstrap the target machine, following prompts to configure the password manager (1pass):
 
 ```bash
-/bin/bash -c "$(curl -fsLS get.chezmoi.io)" -- init --apply dan-os
+# Bootstrap a new machine with one line
+/bin/bash -c "$(curl -fsSL go.dan.sm/dotfiles)"
 ```
 
-TODO: Add start script to personal domain.
+That's it! The machine should now be correctly provisioned.
 
-TODO: Add renovate
+Updates are applied by executing:
+
+```bash
+# Update dotfiles to the latest remote
+chezmoi update
+```
+
+### Todos
+
+- Manage versions with renovate
+- Add a changelog

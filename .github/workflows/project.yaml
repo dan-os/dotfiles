@@ -1,0 +1,26 @@
+---
+name: Project
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "README.yaml"
+      - ".github/workflows/project.yaml"
+  push:
+    branches: [main]
+    paths:
+      - "README.yaml"
+      - ".github/workflows/project.yaml"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  banner:
+    name: "Generate repo banner"
+    uses: dan-os/dan-os/.github/workflows/shared-repo-banner.yaml@main
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+    with:
+      commit_method: commit
